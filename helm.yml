@@ -1,0 +1,20 @@
+---
+- hosts: java
+  vars:
+     helm_chart_url: "https://charts.bitnami.com/bitnami"
+  tasks:
+          # - name: Add helm repo
+          #kubernetes.core.helm_repository:
+          # name: bitnami
+          # repo_url: "{{ helm_chart_url }}"
+      - name: Install helm chart from a git repo specifying path
+        kubernetes.core.helm:
+          chart:
+            source:
+              type: git
+              location: https://github.com/helm/charts.git
+              path: stable/memcached
+          state: present
+          name: my-memcached
+          namespace: default
+
