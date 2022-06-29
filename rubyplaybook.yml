@@ -1,0 +1,3 @@
+- hosts: java
+  roles:
+    - role: ansible-role-ruby
